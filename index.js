@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
-import './style.css';
+import {Component} from 'ReactDOM';
 
-class App extends Component {
+class HelloReact extends Component {
   constructor() {
     super();
-    this.state = {
-      name: 'React'
-    };
   }
 
   render() {
     return (
       <div>
-        <Hello name={this.state.name} />
         <p>
-          Start editing to see some magic happen :)
+          Hello From Encapsulated React Component
         </p>
       </div>
     );
   }
-}
+};
 
-render(<App />, document.getElementById('root'));
+class HelloWebComponent extends HTMLElement {
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    ReactDOM.render(<HelloReact />, this);
+  }
+  disconnectedCallback(){
+    ReactDOM.unmountComponentAtNode(this);
+  }
+};
+
+customElements.define('hello-web-component', HelloWebComponent);
