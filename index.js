@@ -30,3 +30,4 @@ class HelloWebComponent extends HTMLElement {
 
 customElements.define('hello-web-component', HelloWebComponent);
 const webCmp = document.createElement('hello-web-component');
+document.body.appendChild(webCmp);
